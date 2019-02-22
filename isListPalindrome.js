@@ -59,3 +59,16 @@ function isListPalindrome(l) {
   }
   return true;
 }
+
+// -------- O(2n) space solution -------- //
+function isListPalindrome(l) {
+  if (!l) return true
+  let t1 = ""
+  let t2 = ""
+  while (!!l) {
+      t1 = l.value + t1
+      t2 = t2 + l.value
+      l = l.next
+  }
+  return t1 === t2
+}
