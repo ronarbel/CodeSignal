@@ -3,7 +3,7 @@
 //   this.value = x;
 //   this.next = null;
 // }
-//
+
 function reverseNodesInKGroups(l, k) {
   const findLength = (l) => {
     let counter = 0;
@@ -44,7 +44,7 @@ function reverseNodesInKGroups(l, k) {
   while (reversals) {
     let counter = 1;
     while (counter !== k) {
-      currentTail = currentTail.next
+      currentTail = currentTail.next;
       counter += 1;
     }
     reconnectHead = currentTail.next;
@@ -54,7 +54,7 @@ function reverseNodesInKGroups(l, k) {
     resultTail = flipped[1];
     flipped[1].next = reconnectHead;
     currentHead = reconnectHead;
-    currentTail = currentHead
+    currentTail = currentHead;
     reversals -= 1;
   }
 
