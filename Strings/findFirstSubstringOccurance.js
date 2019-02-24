@@ -9,3 +9,17 @@ function findFirstSubstringOccurrence(s, x) {
   }
   return -1;
 }
+
+// -------- sliding window -------- //
+function findFirstSubstringOccurrence(s, x) {
+  let sLets = s.split('');
+  let window = sLets.slice(0, x.length);
+  let i = 0
+  while (i + x.length <= s.length) {
+    if (window.join('') === x) return i;
+    window.shift();
+    window.push(sLets[i + x.length]);
+    i += 1;
+  }
+  return -1;
+}
