@@ -29,100 +29,55 @@ function arrayMaxConsecutiveSum2(a) {
   }
   return maxSum;
 }
+
+// -------- optimized -------- //
+// optimizations:
+// sliding window
+// start index at first positive integer or zero
+// remove negative integers from end of array
+// increase starting window to contain largest number of continuous integers >= 0
+
 function arrayMaxConsecutiveSum2(a) {
-  let maxSum = -Infinity;
-  let win = 1;
-  while (win <= a.length) {
-    let tempSum = a.slice(0, win).reduce((a, v) => a + v);
-    maxSum = Math.max(tempSum, maxSum);
-    for (let i = win; i < a.length; i++) {
-      tempSum += a[i] - a[i - win]
-      maxSum = Math.max(tempSum, maxSum);
+  // start index at 0 or first positive integer
+  let start = 0;
+  for (let i = 0; i < a.length; i += 1) {
+    if (a[i] > 0) {
+      start = i; 
+      break;
     }
-    win += 1;
   }
-  return maxSum;
-}
-function arrayMaxConsecutiveSum2(a) {
-  let maxSum = -Infinity;
+  
+  // if positive integers exist
   let win = 1;
-  while (win <= a.length) {
-    let tempSum = a.slice(0, win).redfunction arrayMaxConsecutiveSum2(a) {
-  let maxSum = -Infinity;
-  let win = 1;
-  while (win <= a.length) {
-    let tempSum = a.slice(0, win).reduce((a, v) => a + v);
-    maxSum = Math.max(tempSum, maxSum);
-    for (let i = win; i < a.length; i++) {
-      tempSum += a[i] - a[i - win]
-      maxSum = Math.max(tempSum, maxSum);
+  if (a[start] > 0) {
+    // remove negative integers from end of array
+    for (let i = a.length - 1; i >= 0; i -= 1) {
+      if (a[i] < 0) {
+        a.pop();
+      } else {
+        break;
+      }
     }
-    win += 1;
+    // increase window until first negative integer
+    for (let i = start + 1; i < a.length; i += 1) {
+      if (a[i] < 0) {
+        break
+      } else {
+        win += 1;;
+      }
+    }
   }
-  return maxSum;
-}
-function arrayMaxConsecutiveSum2(a) {
+  
   let maxSum = -Infinity;
-  let win = 1;
-  while (win <= a.length) {
-    let tempSum = a.slice(0, win).reduce((a, v) => a + v);
+  let startTempSum = a.slice(start, start + win).reduce((a, v) => a + v);
+  while (win <= a.length - start) {
+    let tempSum = startTempSum;
     maxSum = Math.max(tempSum, maxSum);
-    for (let i = win; i < a.length; i++) {
+    for (let i = start + win; i < a.length; i++) {
       tempSum += a[i] - a[i - win]
       maxSum = Math.max(tempSum, maxSum);
     }
-    win += 1;
-  }
-  return maxSum;
-}
-function arrayMaxConsecutiveSum2(a) {
-  let maxSum = -Infinity;
-  let win = 1;
-  while (win <= a.length) {
-    let tempSum = a.slice(0, win).reduce((a, v) => a + v);
-    maxSum = Math.max(tempSum, maxSum);
-    for (let i = win; i < a.length; i++) {
-      tempSum += a[i] - a[i - win]
-      maxSum = Math.max(tempSum, maxSum);
-    }
-    win += 1;
-  }
-  return maxSum;
-}
-function arrayMaxConsecutiveSum2(a) {
-  let maxSum = -Infinity;
-  let win = 1;
-  while (win <= a.length) {
-    let tempSum = a.slice(0, win).reduce((a, v) => a + v);
-    maxSum = Math.max(tempSum, maxSum);
-    for (let i = win; i < a.length; i++) {
-      tempSum += a[i] - a[i - win]
-      maxSum = Math.max(tempSum, maxSum);
-    }
-    win += 1;
-  }
-  return maxSum;
-}
-function arrayMaxConsecutiveSum2(a) {
-  let maxSum = -Infinity;
-  let win = 1;
-  while (win <= a.length) {
-    let tempSum = a.slice(0, win).reduce((a, v) => a + v);
-    maxSum = Math.max(tempSum, maxSum);
-    for (let i = win; i < a.length; i++) {
-      tempSum += a[i] - a[i - win]
-      maxSum = Math.max(tempSum, maxSum);
-    }
-    win += 1;
-  }
-  return maxSum;
-}
-uce((a, v) => a + v);
-    maxSum = Math.max(tempSum, maxSum);
-    for (let i = win; i < a.length; i++) {
-      tempSum += a[i] - a[i - win]
-      maxSum = Math.max(tempSum, maxSum);
-    }
+    startTempSum += a[start + win];
     win += 1;
   }
   return maxSum;
