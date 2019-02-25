@@ -69,7 +69,11 @@ function arrayMaxConsecutiveSum2(a) {
   }
   
   let maxSum = -Infinity;
-  let startTempSum = a.slice(start, start + win).reduce((a, v) => a + v);
+  let startTempSum = 0;
+  for (let i = start; i < start + win; i += 1) {
+    startTempSum += a[i];
+  }
+  
   while (win <= a.length - start) {
     let tempSum = startTempSum;
     maxSum = Math.max(tempSum, maxSum);
@@ -82,3 +86,4 @@ function arrayMaxConsecutiveSum2(a) {
   }
   return maxSum;
 }
+
