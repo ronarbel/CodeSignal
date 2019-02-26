@@ -30,7 +30,7 @@ function arrayMaxConsecutiveSum2(a) {
   return maxSum;
 }
 
-// -------- optimized -------- //
+// -------- optimized but still quadratic -------- //
 // optimizations:
 // sliding window
 // start index at first positive integer or zero
@@ -87,5 +87,14 @@ function arrayMaxConsecutiveSum2(a) {
   return maxSum;
 }
 
-// [1, 2, 3, -100, 4]
-// [1, 2, 3, -100, 101]
+// -------- Linear - Kadane's algorithm -------- //
+function arrayMaxConsecutiveSum2(a) {
+  let maxSum = -Infinity;
+  let sumSoFar = 0;
+  for (let i = 0; i < a.length; i += 1) {
+    sumSoFar += a[i];
+    maxSum = Math.max(sumSoFar, maxSum);
+    sumSoFar = Math.max(sumSoFar, 0);
+  }
+  return maxSum;
+}
