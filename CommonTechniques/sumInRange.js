@@ -67,3 +67,22 @@ function sumInRange(nums, queries) {
   let bigNum = Math.pow(10, 9) + 7;
   return (result + bigNum) % bigNum;
 }
+
+// -------- optimized using prefixSumsArray -------- //
+// not passing test 13, unknown
+function sumInRange(nums, queries) {
+  // turn nums into prefixSumArray
+  for (let i = 1; i < nums.length; i += 1) {
+    nums[i] = nums[i] + nums[i - 1];
+  }
+  
+  let result = 0
+  queries.forEach(query => {
+    let lower = query[0];
+    let higher = query[1];
+    let tempSum = nums[higher] - (nums[lower - 1] || 0);
+    result += tempSum;
+  })
+
+  return (result + 1000000007) % 1000000007;
+}
