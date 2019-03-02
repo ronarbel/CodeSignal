@@ -40,3 +40,15 @@ function isTreeSymmetric(t) {
 
 
 // -------- optimized O(n) -------- //
+function isTreeSymmetric(t) {
+  if (!t) return true;
+  
+  const isMirror = (left, right) => {
+    if (!left || !right) return left === right;
+    return left.value === right.value
+    && isMirror (left.left, right.right)
+    && isMirror (left.right, right.left);
+  }
+  
+  return isMirror(t.left, t.right)
+}
